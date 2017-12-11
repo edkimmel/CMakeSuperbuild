@@ -87,7 +87,7 @@ set(FOO_SOURCE_FILES source/foo.cpp )
 set(FOO_INCLUDE_FILES source/include/foo.h)
 
 add_library(wm_foo ${FOO_SOURCE_FILES} ${FOO_INCLUDE_FILES} )
-target_include_directories(bp_foo
+target_include_directories(wm_foo
     PUBLIC # The folder must be used in the include path for any target using this library
         source/include
 )
