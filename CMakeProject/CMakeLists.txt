@@ -5,7 +5,7 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
 endif()
 
 # Put the project early since modules might need to detect the compiler
-project("WirelessMaps" C CXX)
+project("MyProject" C CXX)
 
 ############################
 ##  Modules and scripts   ##
@@ -36,28 +36,32 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 find_lto(CXX)
 
 #==========================#
-#  WirelessMaps executable  #
+#  MyProject executable  #
 #==========================#
 
 # Always list the files explicitly
-set(WM_SOURCE_FILES source/main.cpp )
+set(WM_SOURCE_FILES 
+  source/main.cpp 
+)
 
 # Always list headers so that they appear in the IDE   
-set(WM_INCLUDE_FILES )                  
+set(WM_INCLUDE_FILES 
 
-add_executable(WirelessMaps ${WM_SOURCE_FILES} ${WM_INCLUDE_FILES})
-target_link_libraries(WirelessMaps
+)                  
+
+add_executable(MyProject ${WM_SOURCE_FILES} ${WM_INCLUDE_FILES})
+target_link_libraries(MyProject
     PRIVATE
         general fmt
 )
 
 # Require c++14, this is better than setting CMAKE_CXX_STANDARD since it won't pollute other targets
-target_compile_features(WirelessMaps PRIVATE cxx_std_14)
+target_compile_features(MyProject PRIVATE cxx_std_14)
 
 # CMake scripts extensions
-target_set_warnings(WirelessMaps ENABLE ALL DISABLE Annoying)
-target_enable_lto(WirelessMaps optimized)
-copy_dlls_for_debug(WirelessMaps "" "")
+target_set_warnings(MyProject ENABLE ALL DISABLE Annoying)
+target_enable_lto(MyProject optimized)
+copy_dlls_for_debug(MyProject "" "")
 
-install (TARGETS WirelessMaps RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+install (TARGETS MyProject RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 

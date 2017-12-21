@@ -7,9 +7,9 @@ ExternalProject_Add(fmt
         GIT_TAG 4.0.0
 	UPDATE_COMMAND ""
 	PATCH_COMMAND ""
-	INSTALL_DIR "${WirelessMaps_INSTALL_PREFIX}"
+	INSTALL_DIR "${MyProject_INSTALL_PREFIX}"
 	CMAKE_ARGS 
-		${WirelessMaps_DEFAULT_ARGS}
+		${MyProject_DEFAULT_ARGS}
 		-DFMT_TEST=OFF
 		-DFMT_DOC=OFF
 )
