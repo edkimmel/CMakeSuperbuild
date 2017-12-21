@@ -40,16 +40,16 @@ find_lto(CXX)
 #==========================#
 
 # Always list the files explicitly
-set(WM_SOURCE_FILES 
+set(CMakeProject_SOURCE_FILES 
   source/main.cpp 
 )
 
 # Always list headers so that they appear in the IDE   
-set(WM_INCLUDE_FILES 
+set(CMakeProject_INCLUDE_FILES 
 
 )                  
 
-add_executable(MyProject ${WM_SOURCE_FILES} ${WM_INCLUDE_FILES})
+add_executable(MyProject ${CMakeProject_SOURCE_FILES} ${CMakeProject_INCLUDE_FILES})
 target_link_libraries(MyProject
     PRIVATE
         general fmt
