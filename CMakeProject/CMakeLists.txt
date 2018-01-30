@@ -30,9 +30,6 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 ##  Project  ##
 ###############
 
-# Check for LTO support (needs to be after project(...) )
-find_lto(CXX)
-
 #==========================#
 #  MyProject executable  #
 #==========================#
@@ -53,7 +50,7 @@ add_executable(MyProject ${CMakeProject_SOURCE_FILES} ${CMakeProject_INCLUDE_FIL
 # Set include paths
 target_include_directories(MyProject SYSTEM
 	PUBLIC
-		${MyProject_INSTALL_PREFIX}/include
+		${CMAKE_INSTALL_PREFIX}/include
 )
 
 # Set libraries to link against
