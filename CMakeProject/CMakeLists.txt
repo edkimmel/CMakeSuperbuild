@@ -18,6 +18,14 @@ include(CMakeDependentOption)
 # Custom modules and scripts
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include(Warnings)
+include(ClangTidy)
+
+# Currently disabled until I actually test that it works...
+#include(CCache)
+
+
+# Currently disabled - it seems to enter system headers and choke itself :(
+#include(IncludeWhatYouUse)
 
 ###############
 ##  OPTIONS  ##
@@ -34,12 +42,10 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 #  MyProject executable  #
 #==========================#
 
-# Always list the files explicitly
 set(CMakeProject_SOURCE_FILES 
   source/main.cpp 
 )
-
-# Always list headers so that they appear in the IDE   
+ 
 set(CMakeProject_INCLUDE_FILES 
 
 )                  
@@ -74,11 +80,37 @@ target_link_libraries(MyProject
         ${MyProject_LibraryPaths}
 )
 
-# Require c++14, this is better than setting CMAKE_CXX_STANDARD since it won't pollute other targets
-target_compile_features(MyProject PRIVATE cxx_std_14)
+# More logging when compiling.
+set_target_properties(
+	MyProject PROPERTIES 
+	RULE_MESSAGES ON
+)
 
-# CMake scripts extensions
+# Set the standard version
+set_target_properties(
+  MyProject PROPERTIES
+  CXX_STANDARD 14
+  CXX_STANDARD_REQUIRED ON
+)
+
+# Add warnings to our target (From Warnings.cmake)
 target_set_warnings(MyProject ENABLE ALL DISABLE Annoying)
 
-install (TARGETS MyProject RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+# Add clang-tidy to our build if it was found (From ClangTidy.cmake)
+#if(DO_CLANG_TIDY)
+  set_target_properties(
+    MyProject PROPERTIES
+    CXX_CLANG_TIDY "${DO_CLANG_TIDY}"
+  )
+#endif()
 
+# Add include-what-you-use to our build if it was found (From IncludeWhatYouUse.cmake)
+#if(DO_IWYU)
+  set_target_properties(
+    MyProject PROPERTIES
+    CXX_INCLUDE_WHAT_YOU_USE "${DO_IWYU}"
+  )
+#endif()
+
+# Where to install the target
+install (TARGETS MyProject RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
