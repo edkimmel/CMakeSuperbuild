@@ -24,7 +24,7 @@ include(AddOptionalDependency)
 ##  Global Variables.  ##
 #########################
 # Global variables
-option(BUILD_SHARED_LIBS "Build libraries as SHARED" ON)
+option(BUILD_SHARED_LIBS "Build libraries as SHARED" OFF)
 
 set(MyProject_INSTALL_PREFIX "${MyProject_BINARY_DIR}/prefix")
 set(MyProject_DEFAULT_ARGS

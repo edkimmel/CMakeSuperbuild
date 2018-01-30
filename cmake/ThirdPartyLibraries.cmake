@@ -10,21 +10,12 @@ macro(add_thirdparty_lib lib_name)
   option(USE_SYSTEM_${_uLibName} "Should we use the system ${lib_name}?" OFF)
   if(USE_SYSTEM_${_uLibName})
     MESSAGE( "Using system ${_uLibName}")
-    find_package(${_uLibName} REQUIRED)  
+    find_package(${_uLibName} REQUIRED CONFIG)  
     MESSAGE( "Found system ${_uLibName}")
-    set(_uIncludeVarName ${_uLibName}_INCLUDE_DIRS)
-    set(_uLibVarName ${_uLibName}_LIBRARIES)
-    list(APPEND MyProject_THIRDPARTYLIBS_ARGS
-      "-D${_uLibName}_INCLUDE_DIRS:PATH=${_uIncludeVarName}"
-      "-D${_uLibName}_LIBRARIES:FILEPATH=${_uLibVarName}")
-
   else()
     include(External_${lib_name})
   endif()
 endmacro()
 
-
 add_thirdparty_lib(fmt)
 add_thirdparty_lib(spdlog)
-
-set(MyProject_THIRDPARTYLIBS_ARGS "${WirelessMaps_THIRDPARTYLIBS_ARGS}")
