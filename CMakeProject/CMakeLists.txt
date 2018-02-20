@@ -14,13 +14,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include(Warnings)
 include(ClangTidy)
 
-# Currently disabled until I actually test that it works...
-#include(CCache)
-
-
-# Currently disabled - it seems to enter system headers and choke itself :(
-#include(IncludeWhatYouUse)
-
 ###############
 ##  OPTIONS  ##
 ###############
