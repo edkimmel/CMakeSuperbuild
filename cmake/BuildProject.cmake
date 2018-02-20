@@ -4,9 +4,11 @@ unset(_deps)
 add_optional_dependency(_deps "fmt")
 add_optional_dependency(_deps "spdlog")
 
-ExternalProject_Add(MyProject
+message("Deps: ${_deps}")
+
+ExternalProject_Add(CMakeProject
   PREFIX 
-    MyProject
+    CMakeProject
   DEPENDS
     ${_deps}
   DOWNLOAD_COMMAND 

@@ -27,6 +27,7 @@ include(AddOptionalDependency)
 option(BUILD_SHARED_LIBS "Build libraries as SHARED" OFF)
 
 set(MyProject_INSTALL_PREFIX "${MyProject_BINARY_DIR}/prefix")
+set(MyProject_THIRD_PARTY_DOWNLOAD_DIR "${MyProject_BINARY_DIR}/download")
 set(MyProject_DEFAULT_ARGS
   "-DBUILD_SHARED_LIBS:BOOL=${BUILD_SHARED_LIBS}"
   "-DCMAKE_PREFIX_PATH:PATH=${MyProject_INSTALL_PREFIX};${CMAKE_PREFIX_PATH}"

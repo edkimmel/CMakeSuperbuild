@@ -7,7 +7,7 @@ ExternalProject_Add(fmt
         GIT_TAG 4.0.0
 	UPDATE_COMMAND ""
 	PATCH_COMMAND ""
-	INSTALL_DIR "${MyProject_INSTALL_PREFIX}"
+	INSTALL_DIR ${MyProject_INSTALL_PREFIX}
 	CMAKE_ARGS 
 		${MyProject_DEFAULT_ARGS}
 		-DFMT_TEST=OFF
